@@ -175,14 +175,25 @@ prototype is not thrown away when the UI exists:
   built from a nidara-desktop TAG by nidara-repo, so it does not exist until the next desktop
   release is cut and pinned; naming it earlier would fail every ISO build in between.
 
+## Decided 2026-09-13: what the first version leaves out
+
+- **Fixed: UEFI only, no legacy BIOS.** Reopened only if the boot loader
+  changes.
+- **Later, without closing the door:** encryption in manual mode
+  (nidara-desktop#556), installing with no network (#20), and installing
+  alongside Windows.
+- **Still open: systemd-boot or Limine.** The lean is systemd-boot, to stay in
+  the systemd ecosystem, but the implications of each get weighed first. The
+  choice is tied to snapshots (#556), to BIOS, and to XBOOTLDR
+  (nidara-desktop#450).
+
 ## Not decided yet
 
 - What the installer's version number is. It is built from a desktop tag but it
   is a product piece; `PRODUCT.md` has the two-number rule, and this does not
   obviously fall on either side.
-- Whether the first version offers encryption at all, given the escape hatch.
 - What happens after a successful install: reboot immediately, or return to the
   live desktop with the option.
-- The boot menu of the installed system still says "Arch Linux (linux)" —
-  `archinstall` writes that entry, and it is the first thing a user sees after
-  installing. One `custom_command` away, but it needs deciding what it should say.
+
+Encryption already ships — the disk step offers opt-in LUKS — and the boot entry
+already says "Nidara (linux)"; both left this list on 2026-09-13.
